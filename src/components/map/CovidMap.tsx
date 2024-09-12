@@ -2,11 +2,15 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useAppSelector } from "@/store/hooks";
 import stateCoordinates from "../../statecordinates.json";
+import { Skeleton } from "../ui/skeleton";
 
 const CovidMap = () => {
-  const data = useAppSelector(
-    (state) => state.covid.fetchedData?.data.regional
-  );
+  const { loading, fetchedData } = useAppSelector((state) => state.covid);
+  const data = fetchedData?.data.regional;
+
+  if (loading) {
+    return <Skeleton className="w-full h-full" />;
+  }
 
   return (
     <MapContainer

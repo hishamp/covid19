@@ -17,7 +17,7 @@ const StatusItem = ({
   color: string;
 }) => {
   return (
-    <div style={{ color: color }} className={`m-6`}>
+    <div className="capitalize" style={{ color: color }} >
       <StatusDot color={color} />
       <span className="font-bold">
         {name} : {value}

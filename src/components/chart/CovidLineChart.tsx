@@ -1,13 +1,22 @@
 import { useAppSelector } from "@/store/hooks";
 import Plot from "react-plotly.js";
+import { Skeleton } from "../ui/skeleton";
 
 const CovidLineChart = () => {
-  const summary = useAppSelector((state) => state.covid.summary);
+  const { summary, loading } = useAppSelector((state) => state.covid);
 
   const totalCases = summary.total;
   const recoveredCases = summary.recovered;
   const activeCases = summary.active;
   const deaths = summary.deaths;
+
+  if (loading) {
+    return (
+      <div className="w-full h-full flex justify-center items-center">
+        <Skeleton className="w-2/3 h-2/3" />
+      </div>
+    );
+  }
 
   return (
     <Plot
@@ -22,12 +31,11 @@ const CovidLineChart = () => {
         },
       ]}
       layout={{
-        title: "COVID-19 Summary Data",
+        title: "COVID-19 Summary Chart",
         xaxis: { title: "Categories" },
         yaxis: { title: "Number of Cases" },
-        width: 500,
-        height: 500,
       }}
+      style={{ width: "100%", height: "100%" }}
     />
   );
 };

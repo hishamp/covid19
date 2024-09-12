@@ -11,18 +11,19 @@ import { getStateData } from "@/store/covid-slice";
 const StateSelect = () => {
   const dispatch = useAppDispatch();
   const states = useAppSelector((state) => state.covid.statesList);
+
   const stateChange = (e: string) => {
-    console.log(e, typeof e);
     dispatch(getStateData(e));
   };
   return (
     <Select onValueChange={stateChange}>
       <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder="state" />
+        <SelectValue placeholder="select state" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem key={"all"} value="all">
-          India
+        {/* to get all data again  */}
+        <SelectItem key={"all"} value="all"> 
+          All States
         </SelectItem>
         {states.map((item) => {
           return (

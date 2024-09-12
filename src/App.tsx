@@ -9,16 +9,20 @@ import { Card } from "./components/ui/card";
 function App() {
   return (
     <div>
-      <h2 className="text-6xl">Covid 19 Data</h2>
-      <Card className="my-10 p-10">
+      <h2 className="lg:text-6xl text-3xl">Covid 19 Data</h2>
+      <Card className="md:my-10 md:p-10 p-2">
         <StateSelect />
         <StatusBox />
         <div className="grid lg:grid-cols-2 grid-cols-1 mt-10">
-          <CovidPieChart />
-          <CovidLineChart />
+          <div className="w-[250px] h-[350px] md:w-[500px] md:h-[500px]">
+            <CovidPieChart />
+          </div>
+          <div className="w-[320px] h-[350px] md:w-[500px] md:h-[500px]">
+            <CovidLineChart />
+          </div>
         </div>
       </Card>
-      <Card className="h-[500px]">
+      <Card className="h-[500px] mt-4">
         <CovidMap />
       </Card>
     </div>
